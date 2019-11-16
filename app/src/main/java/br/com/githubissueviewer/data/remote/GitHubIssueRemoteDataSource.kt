@@ -18,8 +18,6 @@ class GitHubIssueRemoteDataSource : GitHubIssueDataSource{
             .build().create(GitHubIssueNetworkService::class.java)
     }
 
-    val issuesLiveData = MutableLiveData<List<GitHubIssue>>()
-
     override suspend fun getIssuesFromRepo(): List<GitHubIssue> = withContext(Dispatchers.Default) {
         runCatching {
             webservice.getIssuesFromRepo(",","","")

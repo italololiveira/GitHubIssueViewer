@@ -40,8 +40,8 @@ class RemoteRepositoryTest {
                     523464086,
                     "IR: don't attempt to move defaults to `actual` in another module",
                     "open",
-                    "https://api.github.com/repos/JetBrains/kotlin",
-                    "2019-11-14T20:17:00Z",
+                    "https://api.github.com/repos/JetBrains/kotlin/issues/2796",
+                    "2019-11-15T13:16:02Z",
                     GitHubUser(
                         1849909,
                         "pyos",
