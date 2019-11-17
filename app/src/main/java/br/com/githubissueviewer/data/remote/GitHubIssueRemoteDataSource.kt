@@ -1,6 +1,5 @@
 package br.com.githubissueviewer.data.remote
 
-import androidx.lifecycle.MutableLiveData
 import br.com.githubissueviewer.data.GitHubIssue
 import br.com.githubissueviewer.data.GitHubIssueDataSource
 import com.google.gson.GsonBuilder
@@ -9,7 +8,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class GitHubIssueRemoteDataSource : GitHubIssueDataSource{
+class GitHubIssueRemoteDataSource : GitHubIssueDataSource {
 
     val webservice by lazy {
         Retrofit.Builder()
@@ -18,9 +17,13 @@ class GitHubIssueRemoteDataSource : GitHubIssueDataSource{
             .build().create(GitHubIssueNetworkService::class.java)
     }
 
-    override suspend fun getIssuesFromRepo(): List<GitHubIssue> = withContext(Dispatchers.Default) {
+    override suspend fun getIssuesFromRepo(): List<GitHubIssue> = withContext(Dispatchers.IO) {
         runCatching {
-            webservice.getIssuesFromRepo(",","","")
+            webservice.getIssuesFromRepo(
+                "Jetbrains",
+                "kotlin",
+                "open"
+            )
         }.getOrThrow()
     }
 

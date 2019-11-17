@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitHubIssueViewer</string>
+    <string name="created_at">Created at: </string>
+    <string name="open_in_github">OPEN IN GITHUB</string>
 </resources>

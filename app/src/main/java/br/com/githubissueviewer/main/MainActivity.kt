@@ -2,8 +2,11 @@ package br.com.githubissueviewer.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.githubissueviewer.MainFragment
 import br.com.githubissueviewer.R
+import br.com.githubissueviewer.issues.IssuesListFragment
+
+import android.view.MenuItem
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,10 +17,16 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.container,
-                    MainFragment.newInstance()
+                    IssuesListFragment()
                 )
                 .commitNow()
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
