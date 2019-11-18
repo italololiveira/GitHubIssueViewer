@@ -22,11 +22,4 @@ class MyApplication : Application() {
         loadKoinModules(module)
     }
 
-
-    val module = module {
-
-        single { GitHubIssueRepository(get(named("remote"))) }
-        single(named("remote")) { GitHubIssueRemoteDataSource() }
-        viewModel { IssuesViewModel() }
-    }
 }

@@ -15,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class IssuesListFragment : Fragment(){
 
-
     val viewModel : IssuesViewModel by sharedViewModel()
     lateinit var binding : FragmentIssuesBinding
 

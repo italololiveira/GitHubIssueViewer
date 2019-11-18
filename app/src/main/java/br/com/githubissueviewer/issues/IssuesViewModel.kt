@@ -8,7 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.githubissueviewer.data.GitHubIssue
 import br.com.githubissueviewer.data.GitHubIssueRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestCoroutineContext
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

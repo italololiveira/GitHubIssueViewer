@@ -7,6 +7,7 @@ import br.com.githubissueviewer.data.GitHubIssue
 import br.com.githubissueviewer.databinding.ItemIssueBinding
 
 class IssueListRecyclerAdapter(val issueList : List<GitHubIssue>, val onItemCLick: (GitHubIssue) -> Unit) : RecyclerView.Adapter<IssueItemViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueItemViewHolder {
         val inflater =LayoutInflater.from(parent.context)
         return IssueItemViewHolder(ItemIssueBinding.inflate(inflater,parent,false))
@@ -14,7 +15,6 @@ class IssueListRecyclerAdapter(val issueList : List<GitHubIssue>, val onItemCLic
 
     override fun getItemCount(): Int =
         issueList.size
-
 
     override fun onBindViewHolder(holder: IssueItemViewHolder, position: Int) {
         holder.bind(issueList[position])

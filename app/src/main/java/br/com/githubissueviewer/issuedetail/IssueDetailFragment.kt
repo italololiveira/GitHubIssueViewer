@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class IssueDetailFragment : Fragment() {
 
-
     val viewModel: IssuesViewModel by sharedViewModel()
     lateinit var binding: FragmentIssuesDetailBinding
 
@@ -60,7 +59,5 @@ class IssueDetailFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.title = "Issue detail"
     }
-
-
 
 }
