@@ -1,31 +1,22 @@
 package br.com.githubissueviewer.data.remote
 
-import br.com.githubissueviewer.data.GitHubIssue
+import br.com.githubissueviewer.data.entities.GitHubIssue
 import br.com.githubissueviewer.data.GitHubIssueDataSource
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class GitHubIssueRemoteDataSource : GitHubIssueDataSource {
+class GitHubIssueRemoteDataSource : GitHubIssueDataSource, KoinComponent {
 
-    val webservice by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build().create(GitHubIssueNetworkService::class.java)
-    }
+    private val webservice : GitHubIssueNetworkService by inject()
 
     override suspend fun getIssuesFromRepo(): List<GitHubIssue> = withContext(Dispatchers.IO) {
         runCatching {
             webservice.getIssuesFromRepo(
                 "Jetbrains",
-                "kotlin",
-                "open"
+                "kotlin"
             )
         }.getOrThrow()
     }
-
-
 }

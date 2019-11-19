@@ -1,4 +1,4 @@
-package br.com.githubissueviewer.issuedetail
+package br.com.githubissueviewer.issues
 
 import android.content.Intent
 import android.net.Uri
@@ -10,13 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.githubissueviewer.R
-import br.com.githubissueviewer.data.GitHubIssue
+import br.com.githubissueviewer.data.entities.GitHubIssue
 import br.com.githubissueviewer.databinding.FragmentIssuesDetailBinding
-import br.com.githubissueviewer.issues.IssuesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class IssueDetailFragment : Fragment() {
+class IssueDetailFragment : Fragment() , IssueContract.IssueDetailView {
 
     val viewModel: IssuesViewModel by sharedViewModel()
     lateinit var binding: FragmentIssuesDetailBinding
@@ -45,7 +43,7 @@ class IssueDetailFragment : Fragment() {
         })
     }
 
-    private fun populateView(issue: GitHubIssue) {
+    override fun populateView(issue: GitHubIssue) {
         binding.issue = issue
         binding.issueDetailGithubButton.setOnClickListener {
             startActivity(

@@ -1,14 +1,12 @@
 package br.com.githubissueviewer
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import br.com.githubissueviewer.data.GitHubIssue
-import br.com.githubissueviewer.data.GitHubIssueDataSource
+import br.com.githubissueviewer.data.entities.GitHubIssue
 import br.com.githubissueviewer.data.GitHubIssueRepository
+import br.com.githubissueviewer.data.entities.GitHubUser
 import br.com.githubissueviewer.issues.IssuesViewModel
 import br.com.githubissueviewer.main.module
 import com.nhaarman.mockitokotlin2.given
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.willReturn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -21,7 +19,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.inject
 import org.koin.test.mock.declareMock
@@ -38,7 +35,6 @@ class IssueViewModelTest : KoinTest {
 
     val model by inject<IssuesViewModel>()
     private val testDispatcher = TestCoroutineDispatcher()
-    // kotlin :
     @Rule
     @JvmField
     val rule = InstantTaskExecutorRule()
@@ -57,22 +53,33 @@ class IssueViewModelTest : KoinTest {
     }
 
     @Test
-    fun testLiveDataDeliveryWithEmpty() {
+    fun testLiveDataDeliveryWithNotEmpty() {
         declareMock<GitHubIssueRepository> {
-            given { runBlockingTest { getIssuesFromRepo() } }.will { emptyList<GitHubIssue>() }
+            given { runBlockingTest { getIssuesFromRepo() } }.will { listOf(
+                GitHubIssue(
+                    0,
+                    "TITLE",
+                    "opem",
+                    "url",
+                    "created_at",
+                    GitHubUser(0, "logim", "avatar_url"),
+                    "body"
+                )
+            ) }
         }
         model.getIssues()
         assert(!model.issuesListLiveData.value.isNullOrEmpty())
     }
 
     @Test
-    fun testLiveDataDeliveryWithNotEmpty() {
+    fun testLiveDataDeliveryWithEmpty() {
         declareMock<GitHubIssueRepository> {
             given { runBlockingTest { getIssuesFromRepo() } }.will { emptyList<GitHubIssue>() }
         }
         model.getIssues()
         assert(model.issuesListLiveData.value.isNullOrEmpty())
     }
+
 
 }
 

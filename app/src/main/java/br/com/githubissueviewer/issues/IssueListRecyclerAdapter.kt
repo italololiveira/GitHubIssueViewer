@@ -3,7 +3,7 @@ package br.com.githubissueviewer.issues
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.githubissueviewer.data.GitHubIssue
+import br.com.githubissueviewer.data.entities.GitHubIssue
 import br.com.githubissueviewer.databinding.ItemIssueBinding
 
 class IssueListRecyclerAdapter(val issueList : List<GitHubIssue>, val onItemCLick: (GitHubIssue) -> Unit) : RecyclerView.Adapter<IssueItemViewHolder>() {

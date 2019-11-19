@@ -4,7 +4,7 @@
     <data>
         <variable
             name="issue"
-            type="br.com.githubissueviewer.data.GitHubIssue" />
+            type="br.com.githubissueviewer.data.entities.GitHubIssue" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

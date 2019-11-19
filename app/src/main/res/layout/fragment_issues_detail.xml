@@ -5,7 +5,7 @@
     <data>
         <variable
             name="issue"
-            type="br.com.githubissueviewer.data.GitHubIssue" />
+            type="br.com.githubissueviewer.data.entities.GitHubIssue" />
         <variable
             name="viewModel"
             type="br.com.githubissueviewer.issues.IssuesViewModel" />

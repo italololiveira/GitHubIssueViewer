@@ -1,12 +1,4 @@
-package br.com.githubissueviewer.data
-
-import android.icu.text.TimeZoneFormat
-import java.text.DateFormat
-import java.text.Format
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.util.*
+package br.com.githubissueviewer.data.entities
 
 data class GitHubIssue(
     val id: Long,
